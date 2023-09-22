@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.sajal.weatherapp.base.BaseConstants"/>
+
+
+        <variable
+            name="locationName"
+            type="String" />
+
+        <variable
+            name="time"
+            type="Integer" />
+
+
+        <variable
+            name="temp"
+            type="Double" />
+
+        <variable
+            name="tempHigh"
+            type="Double" />
+
+        <variable
+            name="tempLow"
+            type="Double" />
+
+        <variable
+            name="iconName"
+            type="String" />
+
+
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/color_63C9C9"
+        app:cardCornerRadius="@dimen/_38dp"
+        app:strokeColor="@color/color_63C9C9">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="@dimen/_318dp"
+            android:padding="@dimen/_24sp">
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:text="@{locationName}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_30sp"
+                app:layout_constraintBottom_toTopOf="@id/date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="@string/place_name" />
+
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.8"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sp"
+                app:formatDayDate="@{time}"
+                app:layout_constraintBottom_toTopOf="@id/guideline_top"
+                app:layout_constraintStart_toStartOf="@id/place_name"
+                app:layout_constraintTop_toBottomOf="@id/place_name"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="@string/date_placeholder" />
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="@{@string/_temperature(temp)}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline_top"
+                tools:text="@string/_temperature" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="14dp"
+                app:image_url="@{iconName}"
+                app:layout_constraintBottom_toBottomOf="@id/temperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@+id/temperature"
+                app:layout_constraintTop_toTopOf="@id/temperature"
+                tools:src="@drawable/reshot_icon_" />
+
+
+            <View
+                android:id="@+id/highest_temp_bkg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_16dp"
+                android:background="@drawable/rounded_rect_22"
+                app:layout_constraintBottom_toBottomOf="@id/lowest_temp_bkg"
+                app:layout_constraintEnd_toStartOf="@id/lowest_temp_bkg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lowest_temp_bkg" />
+
+            <View
+                android:id="@+id/lowest_temp_bkg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_16dp"
+                android:background="@drawable/rounded_rect_22"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/highest_temp_bkg"
+                app:layout_constraintTop_toBottomOf="@id/guideline_bottom" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".70" />
+
+            <TextView
+                android:id="@+id/highest_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/highest_text"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/highest_temp"
+                app:layout_constraintEnd_toEndOf="@id/highest_temp_bkg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/highest_temp_bkg"
+                app:layout_constraintTop_toTopOf="@id/highest_temp_bkg" />
+
+
+            <TextView
+                android:id="@+id/highest_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/_temperature(tempHigh)}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/highest_temp_bkg"
+                app:layout_constraintEnd_toEndOf="@id/highest_temp_bkg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/highest_temp_bkg"
+                app:layout_constraintTop_toBottomOf="@id/highest_text"
+                tools:text="@string/_temperature" />
+
+
+            <TextView
+                android:id="@+id/lowest_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lowest_text"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/lowest_temp"
+                app:layout_constraintEnd_toEndOf="@id/lowest_temp_bkg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/lowest_temp_bkg"
+                app:layout_constraintTop_toTopOf="@id/lowest_temp_bkg" />
+
+
+            <TextView
+                android:id="@+id/lowest_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/_temperature(tempLow)}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/lowest_temp_bkg"
+                app:layout_constraintEnd_toEndOf="@+id/lowest_temp_bkg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/lowest_temp_bkg"
+                app:layout_constraintTop_toBottomOf="@+id/lowest_text"
+                tools:text="@string/_temperature" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".30" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

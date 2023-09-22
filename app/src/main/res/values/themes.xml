@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="Base.Theme.News2Day" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/COLOR_75CFCF</item>
+    </style>
+
+    <style name="Theme.WeatherApp" parent="Base.Theme.News2Day" />
+</resources>

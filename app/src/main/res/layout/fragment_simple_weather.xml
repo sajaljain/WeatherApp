@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="weatherData"
+            type="com.sajal.weatherapp.home.model.WeatherDataModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/list_containing_two_card_showing_temperature"
+        android:fillViewport="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bkg"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/temp_card"
+                layout="@layout/temperature_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_33dp"
+                app:locationName="@{weatherData.name}"
+                app:time="@{weatherData.dt}"
+                app:temp="@{weatherData.main.temp}"
+                app:tempHigh="@{weatherData.main.tempMax}"
+                app:tempLow="@{weatherData.main.tempMin}"
+                app:iconName="@{weatherData.weather.get(0).icon}"
+                />
+
+
+            <include
+                android:id="@+id/misc_card"
+                layout="@layout/misc_weather_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sunriseTime="@{weatherData.sys.sunrise}"
+                app:sunsetTime="@{weatherData.sys.sunset}"
+                app:humidity="@{weatherData.main.humidity}"
+                app:windSpeed="@{weatherData.wind.speed}"
+                android:layout_margin="@dimen/_33dp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</layout>

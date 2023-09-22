@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="permission_location_and_contacts_rationale_message">Weather App needs location so that we can tell you the outside temprature</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="returned_from_app_settings_to_activity">
+        Location Permission : %s
+    </string>
+    <string name="weather_app">Open Play Weather</string>
+    <string name="search_bar">Search Bar</string>
+    <string name="list_containing_two_card_showing_temperature">List containing two card showing temperature</string>
+    <string name="place_name">Siliguri Siliguri Siliguri Siliguri</string>
+    <string name="date_placeholder">mon 3/5/21</string>
+    <string name="_temperature" formatted="true">%.2f&#xb0;C</string>
+    <string name="highest_text">Highest</string>
+    <string name="lowest_text">Lowest</string>
+    <string name="_6_00_am">6:00 AM</string>
+</resources>

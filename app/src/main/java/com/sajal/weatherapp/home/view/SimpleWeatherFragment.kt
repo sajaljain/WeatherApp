@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.sajal.weatherapp.R
+import com.sajal.weatherapp.base.BaseConstants
 import com.sajal.weatherapp.base.viewmodel.DataResponse
 import com.sajal.weatherapp.databinding.FragmentSimpleWeatherBinding
 import com.sajal.weatherapp.home.model.WeatherDataModel
@@ -141,23 +142,12 @@ class SimpleWeatherFragment : Fragment() {
     private var searchLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                if (result.data != null) {
-//                    val filter =
-//                        result.data!!.getSerializableExtra(Constants.FILTER_DATA_OUTPUT) as NseBseFilter?
-
-//            if(filter != null) {
-//                mItem?.filter?.dFilterName = filter.filter.name
-//                RecosHomeFilter.dFilterName = filter.filter.name
-//                RecosHomeFilter.dFilterValues = filter.filterValue?: emptyList()
-//                RecosHomeFilter.dFilterType = filter.filterType?:""
-//                brFilterVM.filterChange.postValue(filter)
-//            }
-//            Log.d(TAG, "on activity result " + filter.toString())
-////                onFilterApplied(filter!!)
-                }
-//        else {
-//            Log.d(TAG, "on activity result the data is null")
-//        }
+                val lat = result.data?.getDoubleExtra(BaseConstants.LAT_EXTRA,17.43)
+                val longi =  result.data?.getDoubleExtra(BaseConstants.LONG_EXTRA, 8.36)
+                viewModel.getData(
+                    lat.toString(),
+                    longi.toString()
+                )
             } else {
                 Log.d(TAG, "activity result is cancled")
             }

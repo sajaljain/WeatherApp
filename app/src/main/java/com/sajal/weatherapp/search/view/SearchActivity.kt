@@ -1,7 +1,10 @@
 package com.sajal.weatherapp.search.view
 
+import android.app.Service
 import android.content.Intent
+import android.os.Binder
 import android.os.Bundle
+import android.os.IBinder
 import android.os.PersistableBundle
 import android.util.Log
 import android.widget.AdapterView.OnItemClickListener
@@ -67,6 +70,42 @@ class SearchActivity : AppCompatActivity() {
 
                 }
             }
+        }
+    }
+    fun processResult(result: Result) {
+        when (result) {
+            is Result.Success -> {
+                // Access the 'data' property of the Success instance
+                val dataValue = result.data
+                println("Success: $dataValue")
+            }
+            is Result.Error -> {
+                // Access the 'message' property of the Error instance
+                val errorMessage = result.message
+                println("Error: $errorMessage")
+            }
+            else -> {
+
+            }
+        }
+    }
+
+    sealed class Result {
+        data class Success(val data: String) : Result()
+        data class Error(val message: String) : Result()
+
+    }
+
+    class MyService : Service() {
+
+        private val binder = MyBinder()
+
+        override fun onBind(intent: Intent): IBinder {
+            return binder
+        }
+
+        inner class MyBinder : Binder() {
+            fun getService(): MyService = this@MyService
         }
     }
 

@@ -6,15 +6,15 @@
     <data>
 
         <variable
-            name="sunriseTime"
+            name="riseTime"
             type="Integer" />
 
         <variable
-            name="sunsetTime"
+            name="setTime"
             type="Integer" />
 
         <variable
-            name="humidity"
+            name="humid"
             type="Integer" />
 
         <variable
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:formatTimeIn24HourMin="@{sunriseTime}"
+                app:formatTimeIn24HourMin="@{riseTime}"
                 app:layout_constraintBottom_toBottomOf="@id/sunrise"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/sunrise"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:formatTimeIn24HourMin="@{sunsetTime}"
+                app:formatTimeIn24HourMin="@{setTime}"
                 app:layout_constraintBottom_toBottomOf="@id/sunset"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/sunset"
@@ -122,7 +122,7 @@
                 android:id="@+id/humidity_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{humidity.toString()}"
+                android:text="@{humid.toString()}"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@id/humidity"

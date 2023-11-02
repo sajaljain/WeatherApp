@@ -1,5 +1,6 @@
 package com.sajal.weatherapp.search.vm
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,7 @@ class SearchViewModel : ViewModel() {
 
     fun getSearchQueryResult(q: String?) {
         viewModelScope.launch {
+            Log.d("searchmodel", "getSearchQueryResult:${Thread.currentThread().name} ")
             val res = searchRepo.getSearchResult(q)
             return@launch _searchResult.postValue(res)
         }

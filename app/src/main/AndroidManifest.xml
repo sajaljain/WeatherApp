@@ -16,7 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherApp"
         tools:targetApi="31">
+        <activity
+            android:name=".splash.MyComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_my_compose"
+            android:theme="@style/Theme.WeatherApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".base.view.FragmentContainerActivity"
             android:exported="false" />
@@ -26,11 +36,7 @@
         <activity
             android:name=".splash.SplashScreen"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

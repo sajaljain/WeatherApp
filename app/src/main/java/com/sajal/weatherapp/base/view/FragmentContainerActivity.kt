@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.databinding.DataBindingUtil
 import com.sajal.weatherapp.R
 import com.sajal.weatherapp.base.viewmodel.FragmentContainerVM
@@ -20,6 +22,9 @@ class FragmentContainerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_fragment_container)
         setSupportActionBar(binding.toolbar)
+        binding.composeContainer.setContent {
+            sayCheezy(name = "Fragment Container Activity")
+        }
         launchNewsFragment()
     }
 
@@ -38,5 +43,9 @@ class FragmentContainerActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return super.onOptionsItemSelected(item)
+    }
+    @Composable
+    fun sayCheezy(name : String = "Some Default Name Value") {
+        Text(text = "$name")
     }
 }

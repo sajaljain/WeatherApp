@@ -15,4 +15,5 @@
     <string name="highest_text">Highest</string>
     <string name="lowest_text">Lowest</string>
     <string name="_6_00_am">6:00 AM</string>
+    <string name="title_activity_my_compose">MyComposeActivity</string>
 </resources>

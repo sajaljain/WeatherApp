@@ -5,11 +5,16 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,7 +25,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -34,7 +41,7 @@ class MyComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyInputTextField()
+            UseOfModifierInTextView()
         }
     }
 
@@ -69,15 +76,17 @@ class MyComposeActivity : ComponentActivity() {
         )
     }
 
-    @Preview(showBackground = true, name = "Preview Message", widthDp = 200, heightDp = 300)
+    @Preview(showBackground = true, name = "Preview Message", widthDp = 500, heightDp = 500)
     @Composable
     private fun myPreviewFunction() {
-        Column {
-            ListViewItem(R.drawable.profile_circle, "Sajal Jain", "Technical Lead")
-            ListViewItem(R.drawable.profile_circle, "Akshit", "Product Manager")
-            ListViewItem(R.drawable.profile_circle, "Ankit", "Product Manager")
-            ListViewItem(R.drawable.profile_circle, "Dhruv", "Technical Lead")
-        }
+//        Column {
+//            ListViewItem(R.drawable.profile_circle, "Sajal Jain", "Technical Lead")
+//            ListViewItem(R.drawable.profile_circle, "Akshit", "Product Manager")
+//            ListViewItem(R.drawable.profile_circle, "Ankit", "Product Manager")
+//            ListViewItem(R.drawable.profile_circle, "Dhruv", "Technical Lead")
+//        }
+        UseOfModifierInTextView()
+        // MakeCircularImageView()
     }
 
     @Composable
@@ -111,5 +120,43 @@ class MyComposeActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    fun UseOfModifierInTextView() {
+        Text(
+            text = "Hello",
+            fontSize = 20.sp,
+            color = Color.Black,
+            modifier = Modifier
+                .background(Color.Blue)
+                .clickable {
+                    Log.d("sajal" ,"Outside redline")
+                }
+                .size(200.dp)
+                .padding(8.dp) //Outer 8dp padding
+                .border(4.dp,Color.Red)
+                .clickable {
+                    Log.d("sajal" ,"inside the red border")
+                }
+                .padding(40.dp) //innner padding from redline to yellow starting
+                //.clip(RoundedCornerShape(20.dp))
+                .clip(CircleShape)
+                .clickable { Log.d("sajal" ,"inside the yellow") }
+                .background(Color.Yellow)
+                .padding(60.dp) //yeah hello text ki padding hai outer most block se
+        )
+    }
+
+    @Composable
+    fun MakeCircularImageView() {
+        Image(
+            painter = painterResource(id = R.drawable.self),
+            contentDescription = "Image of Android developer Sajal Jain",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(180.dp)
+                .clip(CircleShape)
+                .border(2.dp, Color.LightGray, CircleShape)
+        )
+    }
 
 }
